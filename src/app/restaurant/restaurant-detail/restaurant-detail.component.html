@@ -1,0 +1,95 @@
+
+  <section class="restaurant-details py-5" *ngIf="restaurant" >
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 text-center">
+                <img [src]="restaurant.imageUrl" alt="{{ restaurant.name }}" class="img-fluid mb-4">
+            </div>
+            <div class="col-md-6">
+                <h1 class="restaurant-name mb-4">{{ restaurant.name }}</h1>
+                <p class="restaurant-info"><i class="fas fa-map-marker-alt"></i> {{ restaurant.address }}</p>
+                <p class="restaurant-info"><i class="fas fa-phone"></i> {{ restaurant.phone }}</p>
+                <p class="restaurant-info"><i class="fas fa-clock"></i> {{ restaurant.openingHours }}</p>
+                <p class="restaurant-info"><i class="fas fa-hourglass-start"></i>Delivery Estimate: {{ restaurant.deliveryTimeEstimate }}</p>
+                        
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-md-6 mb-4">
+            <h3 class="section-title">Menu</h3>
+            <app-menu-list [restaurantId]="restaurant.id"></app-menu-list>
+        </div>
+
+
+            <!-- Shopping Cart Section -->
+            <div class="col-md-6 mb-4">
+                <h3 class="section-title">Shopping Cart</h3>
+                <app-mini-cart></app-mini-cart>
+            </div>
+        </div>
+        
+            <div class="row">
+                <div class="col-12 text-center">
+                    <button class="btn btn-primary btn-lg" (click)="placeOrder()">Place Order</button>
+                </div>
+            </div>
+
+
+    </div>
+</section>
+
+
+<section class="customer-reviews py-5" *ngIf="restaurant && restaurant.reviews.length>0">
+    <div class="container">
+        <h2 class="text-center mb-4">Customer Reviews</h2>
+        <hr>
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <div class="review" *ngFor="let review of restaurant.reviews">
+                    <h5>{{ review.customer }}</h5>
+                    <p>
+                        <i *ngFor="let i of [1, 2, 3, 4, 5]"
+                           class="fas"
+                           [ngClass]="i <= review.rating ? 'fa-star text-warning' : (i - 0.5 <= review.rating ? 'fa-star-half-alt text-warning' : 'fa-star text-muted')">
+                        </i>
+                      </p>
+                    <p>{{ review.comment }}</p>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+  
+  <section class="add-review py-5">
+  <div class="container">
+    <h2 class="text-center mb-4">Add Your Review</h2>
+    <form (ngSubmit)="submitReview()">
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <div class="form-group">
+            <label for="customerName">Your Name</label>
+            <input type="text" id="customerName" class="form-control" [(ngModel)]="newReview.customer" name="customer" required>
+          </div>
+          <div class="form-group">
+            <label for="reviewRating">Your Rating</label>
+            <select id="reviewRating" class="form-control" [(ngModel)]="newReview.rating" name="rating" required>
+              <option value="5">5 - Excellent</option>
+              <option value="4">4 - Good</option>
+              <option value="3">3 - Average</option>
+              <option value="2">2 - Poor</option>
+              <option value="1">1 - Terrible</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="reviewComment">Your Review</label>
+            <textarea id="reviewComment" class="form-control" [(ngModel)]="newReview.comment" name="comment" rows="3" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Submit Review</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+

@@ -1,0 +1,7 @@
+<section class="hero-section d-flex align-items-center" [style.backgroundImage]="'url(' + imageUrl + ')'">
+    <div class="container text-center">
+        <h1 class="display-4">{{ title }}</h1>
+        <p class="lead">{{ subtitle }}</p>
+        <a [routerLink]="ctaLink" class="btn btn-primary btn-lg">{{ ctaText }}</a>
+    </div>
+</section>

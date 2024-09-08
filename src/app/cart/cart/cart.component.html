@@ -1,0 +1,83 @@
+<section class="py-5">
+<div class="card">
+  <div class="row" *ngIf="cartItems.length > 0; else emptyCart">
+      <div class="col-md-8 cart">
+          <div class="title">
+              <div class="row">
+                  <div class="col"><h4><b>Shopping Cart</b></h4></div>
+                  <div class="col align-self-center text-right text-muted">{{cartItems.length}} items</div>
+              </div>
+          </div>    
+          <div class="row border-top border-bottom" *ngFor="let item of cartItems">
+              <div class="row main align-items-center">
+                  <div class="col">
+                      <div class="row text-muted">{{ item.menuItem.name }}</div>
+                      <div class="row">{{ item.menuItem.name }}</div>
+                  </div>
+
+                <div class="col">
+                  <button class="btn btn-sm btn-outline-secondary" (click)="updateQuantity(item, -1)">-</button>
+                  <span class="mx-2">{{ item.quantity }}</span>
+                  <button class="btn btn-sm btn-outline-secondary" (click)="updateQuantity(item, 1)">+</button>
+                </div>
+                <div class="col">
+                  {{ item.totalPrice | currencyFormat:'$'}} <button class="btn btn-sm btn-outline-danger ml-2" (click)="removeFromCart(item)">×</button>
+                </div>
+          
+                 
+              </div>
+          </div>
+          <div class="back-to-shop">
+            <button (click)="navigateBack()" class="btn">
+              &leftarrow; <span>BACK TO SHOP</span>
+            </button>
+          </div>          
+      </div>
+      <div class="col-md-4 summary">
+          <div><h5><b>Summary</b></h5></div>
+          <hr>
+          <form>
+              <label for="address-select">DELIVERY ADDRESS</label>
+              <select id="address-select" class="form-control" name="address-select" [(ngModel)]="selectedAddress" (ngModelChange)="onAddressChange($event)">
+                <option *ngFor="let address of addresses" [value]="address">
+                  {{ address }}
+                </option>
+              </select>
+              <div class="form-group text-center">
+                <button class="btn btn-primary mt-2" (click)="navigateToManageAddress()">ADD NEW ADDRESS</button>
+              </div>        
+          </form>
+          <hr>
+          <div class="form-group">
+            <label for="payment-method">PAYMENT METHOD</label>
+            <select id="payment-method" class="form-control" name="payment-method" [(ngModel)]="selectedPaymentMethod">
+                <option value="Credit Card">Credit Card</option>
+                <option value="PayPal">PayPal</option>
+                <option value="Cash on Delivery">Cash on Delivery</option>
+            </select>
+        </div>
+        
+        <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+          <div class="col">TOTAL PRICE</div>
+          <div class="col text-right">{{ getTotalPrice() | currencyFormat:'$' }}</div>
+      </div>
+      <hr>
+        <div class="form-group text-center">
+            <button class="btn btn-primary" (click)="checkout()">CHECKOUT</button>
+        </div>
+      </div>
+  </div>
+
+  <!-- Display this block when cart is empty -->
+  <ng-template #emptyCart>
+      <div class="text-center">
+          <h4 class="py-3">Your cart is empty</h4>
+          <div class="back-to-shop">
+            <button (click)="navigateBack()" class="btn">
+              &leftarrow; <span>BACK TO SHOP</span>
+            </button>
+          </div>
+      </div>
+  </ng-template>
+</div>
+</section>

@@ -1,0 +1,6 @@
+    <ul class="list-group" id="menu-list">
+        <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let item of menuItems">
+            {{ item.name }} - {{ item.price | currencyFormat:'$' }}
+            <button class="btn btn-sm btn-outline-primary" (click)="addToCart(item,1)">Add to Cart</button>
+        </li>
+    </ul>

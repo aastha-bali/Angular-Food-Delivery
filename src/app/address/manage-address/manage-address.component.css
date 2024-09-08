@@ -1,0 +1,30 @@
+/* Address Management Page */
+.address-management {
+    background-color: #f4f4f4;
+    padding: 40px 0;
+}
+
+.address-management .card {
+    border-radius: 8px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+}
+
+.address-management .card-body {
+    padding: 20px;
+}
+
+.address-management .list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.address-management .btn-outline-danger {
+    margin-left: 10px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}

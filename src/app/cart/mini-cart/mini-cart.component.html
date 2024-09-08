@@ -1,0 +1,17 @@
+<ul class="list-group" *ngIf="cartItems.length > 0">
+    <li *ngFor="let item of cartItems" class="list-group-item d-flex justify-content-between align-items-center">
+      {{ item.menuItem.name }} - {{ item.menuItem.price | currencyFormat:'$' }}
+      <div>
+        <button class="btn btn-sm btn-outline-secondary" (click)="updateQuantity(item, -1)">-</button>
+        <span class="mx-2">{{ item.quantity }}</span>
+        <button class="btn btn-sm btn-outline-secondary" (click)="updateQuantity(item, 1)">+</button>
+        <button class="btn btn-sm btn-outline-danger ml-2" (click)="removeFromCart(item)">×</button>
+      </div>
+    </li>
+  </ul>
+  <div *ngIf="cartItems.length === 0">
+    Your cart is empty.
+  </div>
+  <div class="mt-4" *ngIf="cartItems.length > 0">
+    <h4>Total: {{ getTotalPrice() | currencyFormat:'$' }}</h4>
+  </div>

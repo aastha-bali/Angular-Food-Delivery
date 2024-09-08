@@ -1,0 +1,22 @@
+.hero-section {
+    background: no-repeat center center/cover;
+    height: 100vh;
+    color: #fff;
+}
+
+.hero-section h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.hero-section p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.hero-section .btn {
+    padding: 12px 30px;
+    font-size: 1rem;
+    border-radius: 50px;
+}

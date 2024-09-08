@@ -1,0 +1,23 @@
+
+<section class="featured-section py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">All Restaurants</h2>
+        <div class="row">
+
+            <div class="col-md-4 mb-4" *ngFor="let restaurant of restaurants">
+                <div class="card restaurant-card h-100">
+                    <img [src]="restaurant.imageUrl" class="card-img-top" [alt]="restaurant.name">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ restaurant.name }}</h5>
+                        <p class="card-text">{{ restaurant.description }}</p>
+                        <p><strong>Delivery Estimate:</strong> {{ restaurant.deliveryTimeEstimate }}</p>
+                        <p><strong>Average Rating:</strong> {{ calculateAverageRating(restaurant.reviews) | number: '1.1-1' }}</p>                       
+                        <a [routerLink]="['/restaurant',restaurant.id]" class="btn btn-outline-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+    </div>
+</section>
